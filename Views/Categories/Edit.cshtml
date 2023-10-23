@@ -1,0 +1,22 @@
+﻿@model Category
+
+
+<h1>
+    @ViewBag.Message
+</h1>
+
+
+
+<form asp-action="Edit" asp-controller="Categories" method="post">
+
+    <input type="text" asp-for="CategoryName" value="@Model.CategoryName" />
+    <input type="text" asp-for="Description" value="@Model.Description" />
+
+
+    <input type="hidden" asp-for="CategoryId" value="@Model.CategoryId" />
+
+
+
+    <input type="submit" value="Update" />
+
+</form>

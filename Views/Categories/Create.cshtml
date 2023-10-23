@@ -1,0 +1,73 @@
+﻿@model Category
+
+
+<h1>
+    @ViewBag.Message
+</h1>
+
+<form asp-action="Create" enctype="multipart/form-data" asp-controller="Categories" method="post">
+
+    
+    <input type="text" asp-for="CategoryName" value="" />
+    <label for="CategoryName">CategoryName</label><br>
+   
+    <input type="ntext" asp-for="Description" value=""  />
+    <label for="Description">Description</label><br>
+    
+    <input type="number" asp-for="CategoryCode" value="" />
+    <label for="CategoryCode">CategoryCode</label><br>
+    
+    <input type="text" asp-for="DisplayOrder" value="" />
+    <label for="DisplayOrder">DisplayOrder</label><br>
+    
+    <input type="datetime" asp-for="CreatedDate" value="" />
+    <label for="CreatedDate">CreatedDate</label><br>
+    
+    <input type="text" asp-for="CreatedBy" value="" />
+    <label for="CreatedBy">CreatedBy</label><br>
+    
+    <input type="datetime" asp-for="ModifiedDate" value="" /> 
+    <label for="ModifiedDate">ModifiedDate</label><br>
+    
+    <input type="text" asp-for="ModifiedBy" value="" />
+    <label for="ModifiedBy">ModifiedBy</label><br>
+    
+    <input type="text" asp-for="IsActive" value="" />
+    <label for="IsActive">IsActive</label><br>
+    
+    <input type="number" asp-for="AttachmentId" value="" />
+    <label for="AttachmentId">AttachmentId</label><br>
+    
+    <input type="text" asp-for="IsDeleted" value="" />
+    <label for="IsDeleted">IsDeleted</label><br>
+    
+
+
+
+
+
+    <input type="file" id="CPicture" name="CPicture" value="" />
+
+
+   @* <input type="file" id="CCatalogue" name="CCatalogue" value="" />*@
+
+    <input type="submit" value="Save" />
+
+</form>
+
+
+
+@section ABC{
+
+    <script>
+
+        $(function () {
+
+            $('#Description').datepicker();
+
+
+
+        });
+
+    </script>
+}

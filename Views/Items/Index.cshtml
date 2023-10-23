@@ -1,0 +1,171 @@
+﻿@model IList<Item>
+
+
+@*
+<h1>
+    Total Products: @Model.Count Active: @Model.Where(a=>a.Status ==  "Active").Count()
+</h1>*@
+
+
+
+<a href="/Items/Create">Add New Item</a>
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+</div>
+
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+            <th>
+                Image
+            </th>
+                </div>
+            </div>
+            <th>
+                Image
+            </th>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Quantity
+            </th>
+
+            <th>
+                Price
+            </th>
+            <th>
+                Model
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                DiscountAmount
+            </th>
+            
+            <th>
+                CreatedDate
+            </th>
+            <th>
+                Actions
+            </th>
+            
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (Item I in Model)
+        {
+
+            
+            <tr class="text-success">
+
+                
+                <td>
+                    
+                    @{
+                        string FinalImagePath = "/data/items/default.jpg";
+                        if (I.Images != null)
+                        {
+                            string[] AllImages = I.Images.Split(",");
+                            FinalImagePath = AllImages[0];
+                        }
+
+
+                    }
+
+
+
+                    <img src="@FinalImagePath" class="img-thumbnail" style="max-height:100px;" alt="" />
+                </td>
+
+                @*<td>
+                    @I.Images
+                </td>*@
+                <td>
+                    @I.Id
+                </td>
+                <td>
+                    @I.Name
+                </td>
+                <td>
+                    @I.Description
+                </td>
+                <td>
+                   @I.Quantity
+                </td>
+
+                <td>
+                    @I.Price
+                </td>
+                <td>
+                   @I.Model
+                </td>
+                <td>
+                    @I.Color
+                </td>
+                <th>
+                    @I.DiscountAmount
+                </th>
+              
+                <td>
+                    @I.CreatedDate
+                </td>
+                
+                <td>
+                    <a href="/Items/Detail?id=@I.Id" class="btn btn-info">Detail</a>
+                    <a href="/Items/Delete?id=@I.Id" class="btn btn-danger">Delete</a>
+
+                    <a href="/Items/Edit?id=@I.Id" class="btn btn-warning">Edit</a>
+                </td>
+            </tr>
+
+
+           
+        }
+
+    </tbody>
+</table>
+
+<!-- Your HTML form and UI elements -->
+<button id="sellButton">Sell Item</button>
+@section ABC{
+
+<script>
+    $(document).ready(function() {
+        $("#sellButton").click(function() {
+            var quantitySold = /* get the quantity sold from your form */;
+            $.ajax({
+                type: "POST",
+                url: "/Item/SellItem", // Assuming your controller is named ItemController and the action method is SellItem
+                data: { quantitySold: quantitySold },
+                success: function(result) {
+                    // Update your UI with the updated stock, result should contain updated data
+                    $("#stockDisplay").text("Quantity in Stock: " + result.QuantityInStock);
+                },
+                error: function() {
+                    // Handle errors here
+                }
+            });
+        });
+    });
+</script>
+}
+

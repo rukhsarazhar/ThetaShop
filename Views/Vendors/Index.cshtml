@@ -1,0 +1,40 @@
+﻿<!-- Index.cshtml -->
+<table id="vendorsTable" class="display">
+    <thead>
+        <tr>
+            <th>Vendor Name</th>
+            <!-- Add other vendor properties here -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Vendors data will be populated using DataTables AJAX -->
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#vendorsTable').DataTable({
+            ajax: {
+                url: '/Vendors/GetVendors', // Action method to get vendors using AJAX
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'vendorName' },
+                // Add other vendor properties here
+            ]
+        });
+    });
+    // JavaScript AJAX call to check recent purchases and add star icon dynamically
+    $.ajax({
+        url: '/Purchases/CheckRecentPurchases',
+        method: 'GET',
+        success: function (data) {
+            data.forEach(function (vendor) {
+                $('#vendorsTable tbody tr:contains("' + vendor.vendorName + '")')
+                    .find('td:first')
+                    .prepend('<span class="glyphicon glyphicon-star"></span> ');
+            });
+        }
+    });
+
+</script>

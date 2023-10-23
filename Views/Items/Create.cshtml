@@ -1,0 +1,67 @@
+﻿@model Item
+
+
+
+<body style="background-color:powderblue;">
+<h1>
+    Please fill the data for item
+</h1>
+
+
+<form method="post" asp-action="Create" asp-controller="Items" enctype="multipart/form-data">
+
+    <select asp-for="CategoryId" class="form-control">
+        <option selected>Please Choose Category</option>
+        <option value="1">Mobile</option>
+        <option value="2">Laptop</option>
+        <option value="3">Accessories</option>
+        
+    </select>
+    
+    
+    @*<label for="Images">Images</label><br>
+    <input type="text" asp-for="Images" class="form-control" />
+    *@
+    <label for="Name">Name</label><br>
+    <input type="text" asp-for="Name" class="form-control" />
+    <label for="Description">Description</label><br>
+    <input type="text" asp-for="Description" class="form-control" />
+    <label for="Quantity">Quantity</label><br>
+    <input type="number" asp-for="Quantity" class="form-control" />
+    <label for="Price">Price</label><br>
+    <input type="text" asp-for="Price" class="form-control" />
+    <label for="Model">Model</label><br>
+    <input type="text" asp-for="Model" class="form-control" />
+    <label for="Color">Color</label><br>
+    <input type="number" asp-for="Color" class="form-control" />
+    <label for="DiscountAmount">DiscountAmount</label><br>
+    <input type="number" asp-for="DiscountAmount" class="form-control" />
+    <label for="CreatedDate">CreatedDate</label><br>
+    <input type="Date" asp-for="CreatedDate" class="form-control" />
+    
+    
+
+    
+
+    <input type="file" id="IImages" name="IImages" multiple class="form-control" />
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+            Default radio
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+            Default checked radio
+        </label>
+    </div>
+    
+
+
+
+    <input type="submit" value="Submit" class="btn btn-primary" />
+
+</form>
+</body>
